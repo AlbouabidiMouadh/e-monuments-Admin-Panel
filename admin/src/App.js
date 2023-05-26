@@ -5,6 +5,11 @@ import { Routes, Route } from "react-router-dom";
 import ForgetPassword from "./routes/ForgetPassword";
 import HomeNav from "./routes/HomeNav";
 
+
+// npm run start : besh tlanci
+// npx tailwindcss -i ./src/index.css -o ./public/output.css : tailwind
+// npm install
+
 const App = () => {
   const [token, setToken] = useState(null);
   const getUserData =  () => {

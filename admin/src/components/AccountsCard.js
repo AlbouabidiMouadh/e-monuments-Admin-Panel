@@ -22,7 +22,7 @@ const AccountsCard = (props) => {
           </div>
         </td>
         <td>
-          <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
+          <div className="font-black" style={{ margin: "10px 10px 0", fontSize: "15px" }}>
             {item.firstName+" "+item.lastName}
           </div>
         </td>
