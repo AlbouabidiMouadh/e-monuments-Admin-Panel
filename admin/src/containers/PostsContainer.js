@@ -3,7 +3,7 @@ import ContentsCards from "../components/ContentsCards";
 const PostsContainer = () => {
   return (
     <div>
-      <ContentsCards type="posts" />
+      <ContentsCards type="post" />
     </div>
   );
 };

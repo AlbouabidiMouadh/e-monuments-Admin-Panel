@@ -2,21 +2,27 @@ import { useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import url from "../utils/url";
 const Login = () => {
   const navigation = useNavigate();
+  // const [logedIn , setLogedIn] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const loginHandler = async () => {
-    const response = await axios.post("http://localhost:5000/admin-login", {
+    const response = await axios.post(`${url}/admin-login`, {
       email,
       password,
     });
     try {
       const data = response.data;
-      const { adminname, role, token } = data;
-      sessionStorage.setItem("token", token);
-      sessionStorage.setItem("adminInfo", { adminname, role });
-      navigation("/dashbord");
+      if (response.status == 200) {
+        const { adminname, role, token } = data;
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("adminInfo", { adminname, role });
+        navigation("../dashbord");
+      } else {
+        navigation("../login");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -38,7 +44,7 @@ const Login = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        <div className="space-y-6" action="#" method="POST">
           <div>
             <label
               htmlFor="email"
@@ -99,16 +105,17 @@ const Login = () => {
           <div>
             <button
               onClick={() => {
-                alert("signed in");
-                navigation("../dashbord");
+                loginHandler();
+                // alert("signed in");
+                // navigation("../dashbord");
               }}
-              type="submit"
+              // type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign in
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

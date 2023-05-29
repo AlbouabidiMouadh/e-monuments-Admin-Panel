@@ -4,7 +4,7 @@ import ContentsCards from "../components/ContentsCards";
 const GuidesContainer = () => {
   return (
     <div>
-      <ContentsCards type="guides" />
+      <ContentsCards type="guide" />
     </div>
   );
 };
