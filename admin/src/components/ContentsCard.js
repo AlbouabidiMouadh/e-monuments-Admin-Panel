@@ -57,7 +57,7 @@ const ContentsCard = (props) => {
           {item.approved ? "true" : "false"}
         </div>
       </td>
-      {type != "guide" ? (
+      {type !== "guide" ? (
         <td>
           <button
             onClick={async () => {

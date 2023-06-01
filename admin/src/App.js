@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Login from "./routes/Login";
-import Dashbord from "./routes/Dashbord";
+import Dashboard from "./routes/Dashbord";
 import { Routes, Route } from "react-router-dom";
 import ForgetPassword from "./routes/ForgetPassword";
 import HomeNav from "./routes/HomeNav";
@@ -25,8 +25,8 @@ const App = () => {
     <div>
       <Routes>
         <Route index path="/" element={<HomeNav />} />
-        {token != null ? <Route path="/dashbord" element={<Dashbord />} /> : null}
-        <Route path="/dashbord" element={<Dashbord />} />
+        {token != null ? <Route path="/dashboard" element={<Dashboard />} /> : null}
+        {/* <Route path="/dashboard" element={<dashboard />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/recover-password" element={<ForgetPassword />} />
       </Routes>

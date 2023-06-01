@@ -9,18 +9,30 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const loginHandler = async () => {
-    const response = await axios.post(`${url}/admin-login`, {
-      email,
-      password,
-    });
     try {
+      const response = await axios.post(
+        `${url}/admin-login`,
+        {
+          email,
+          password,
+        }
+      );
+
       const data = response.data;
-      if (response.status == 200) {
+
+      if (response.status === 200) {
         const { adminname, role, token } = data;
-        sessionStorage.setItem("token", token);
-        sessionStorage.setItem("adminInfo", { adminname, role });
-        navigation("../dashbord");
+        console.log(response.data);
+        sessionStorage.setItem("token", response.data.token);
+
+        // Store adminInfo as a string
+        const adminInfo = JSON.stringify({ adminname, role });
+        sessionStorage.setItem("adminInfo", adminInfo);
+        console.log(sessionStorage.getItem('token'))
+        navigation("../dashboard");
+        console.log("request made");
       } else {
+        console.log("stayed in the login");
         navigation("../login");
       }
     } catch (err) {
@@ -54,8 +66,8 @@ const Login = () => {
             </label>
             <div className="mt-2">
               <input
-                onChange={(newText) => {
-                  setEmail(newText);
+                onChange={(e) => {
+                  setEmail(e.target.value);
                 }}
                 id="email"
                 name="email"
@@ -89,8 +101,8 @@ const Login = () => {
             </div>
             <div className="mt-2">
               <input
-                onChange={(newText) => {
-                  setPassword(newText);
+                onChange={(e) => {
+                  setPassword(e.target.value);
                 }}
                 id="password"
                 name="password"
@@ -107,7 +119,7 @@ const Login = () => {
               onClick={() => {
                 loginHandler();
                 // alert("signed in");
-                // navigation("../dashbord");
+                // navigation("../dashboard");
               }}
               // type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
