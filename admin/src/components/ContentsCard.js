@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import url from "../utils/url";
+import { useNavigate } from "react-router-dom";
 const ContentsCard = (props) => {
+  const navigate = useNavigate
   const [clicked, setClicked] = useState(false);
   useEffect(() => {}, [clicked]);
   const item = props.item;
@@ -12,6 +14,7 @@ const ContentsCard = (props) => {
     try {
       console.log(response.data);
       alert("item deleted succefully");
+      navigate(0);
     } catch (err) {
       console.log(err);
     }
@@ -25,6 +28,7 @@ const ContentsCard = (props) => {
       console.log(response.data);
       // alert("item deleted succefully");
       alert("item deleted succefully");
+      navigate(0);
     } catch (err) {
       console.log(err);
     }

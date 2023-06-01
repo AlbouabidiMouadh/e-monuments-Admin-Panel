@@ -5,6 +5,7 @@ import { v4 as uuid } from "uuid";
 
 const CreateGuide = () => {
   const [file, setFile] = useState(null);
+  const [location, setLocation] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -13,13 +14,12 @@ const CreateGuide = () => {
   };
 
   const createGuide = async () => {
-      
-      try {
+    try {
       const formData = new FormData();
       formData.append("profile", file);
 
       const uploadResponse = await axios.post(
-          `${url}/upload-guide-picture`,
+        `${url}/upload-guide-picture`,
         formData,
         {
           headers: {
@@ -27,32 +27,31 @@ const CreateGuide = () => {
           },
         }
       );
-      
+
       const { pictureName } = uploadResponse.data;
       console.log("Title:", title);
       console.log("Description:", description);
       console.log("Picture Name:", pictureName);
-      
+
       const guideData = {
         title: title,
         description: description,
         image: pictureName,
+        location: location,
         createdBy: "Admin",
       };
-      
+
       const createResponse = await axios.post(`${url}/create-guide`, guideData);
 
       console.log(createResponse.data);
     } catch (error) {
       console.log(error);
     }
-};
+  };
 
-return (
-    <div className="text-center mx-auto max-w-md">
+  return (
+    <div className="text-center mt-10 mx-auto max-w-md">
       <form>
-        {/* Form fields */}
-        {/* ... */}
         <div className="sm:col-span-4">
           <label
             htmlFor="title"
@@ -66,13 +65,34 @@ return (
                 type="text"
                 name="title"
                 id="title"
-                // autoComplete="title"
                 className="block w-100 border-0 bg-transparent py-2 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-lg sm:leading-6"
                 placeholder="Title"
                 onChange={(event) => {
-                    setTitle(event.target.value);
-                  }}
-                />
+                  setTitle(event.target.value);
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="sm:col-span-4">
+          <label
+            htmlFor="location"
+            className="block text-lg font-medium leading-6 text-gray-900"
+          >
+            Location
+          </label>
+          <div className="mt-2">
+            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+              <input
+                type="text"
+                name="location"
+                id="location"
+                className="block w-100 border-0 bg-transparent py-2 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-lg sm:leading-6"
+                placeholder="Location"
+                onChange={(event) => {
+                  setLocation(event.target.value);
+                }}
+              />
             </div>
           </div>
         </div>
@@ -93,7 +113,7 @@ return (
               onChange={(event) => {
                 setDescription(event.target.value);
               }}
-              ></textarea>
+            ></textarea>
           </div>
         </div>
 
@@ -106,7 +126,6 @@ return (
           </label>
           <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-8 py-12">
             <div className="text-center">
-              {/* File input */}
               <input
                 id="file-upload"
                 name="file-upload"
@@ -120,7 +139,6 @@ return (
               >
                 <span>Upload a file</span>
               </label>
-              {/* File name display */}
               {file && <p className="pl-2">{file.name}</p>}
             </div>
           </div>

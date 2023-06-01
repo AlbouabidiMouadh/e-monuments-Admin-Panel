@@ -1,9 +1,11 @@
-import React from 'react'
-import AccountsCards from '../components/AccountsCards';
+import React from "react";
+import AccountsCards from "../components/AccountsCards";
 const UsersContainer = () => {
   return (
-    <div><AccountsCards type="user"/></div>
-  )
-}
+    <div style={{ margin: "auto", marginTop: "50px" }}>
+      <AccountsCards type="user" />
+    </div>
+  );
+};
 
-export default UsersContainer
+export default UsersContainer;

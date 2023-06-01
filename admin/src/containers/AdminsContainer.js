@@ -1,9 +1,11 @@
-import React from 'react'
-import AccountsCards from '../components/AccountsCards';
+import React from "react";
+import AccountsCards from "../components/AccountsCards";
 const AdminsContainer = () => {
   return (
-    <div><AccountsCards type="admin"/></div>
-  )
-}
+    <div style={{ margin: "auto", marginTop: "50px" }}>
+      <AccountsCards type="admin" />
+    </div>
+  );
+};
 
-export default AdminsContainer
+export default AdminsContainer;

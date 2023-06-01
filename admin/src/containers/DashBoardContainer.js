@@ -1,38 +1,94 @@
-import React, { useEffect, useRef, useState } from 'react';
-import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom';
-
-const Chart = ({ filter, chartId, height, width }) => {
-  const sdk = new ChartsEmbedSDK({ baseUrl: 'https://charts.mongodb.com/charts-new-uhtfm' });
-  const chartDiv = useRef(null);
-  const [rendered, setRendered] = useState(false);
-  const [chart] = useState(sdk.createChart({ chartId, height, width, theme: 'dark' }));
-
-  useEffect(() => {
-    chart.render(chartDiv.current)
-      .then(() => setRendered(true))
-      .catch(err => console.log('Error during Charts rendering.', err));
-  }, [chart]);
-
-  useEffect(() => {
-    if (rendered) {
-      chart.setFilter(filter)
-        .catch(err => console.log('Error while filtering.', err));
-    }
-  }, [chart, filter, rendered]);
-
-  return <div className="chart" ref={chartDiv} />;
-};
+import React from "react";
+import Chart from "../components/Chart";
 
 const DashBoardContainer = () => {
-  const filter = {}; // Add your filter object if needed
-  const chartId = '647877b9-79d2-45f4-8c73-9384a7e5303e'; // Replace with your actual chart ID
+  const filter = {};
+  const chartId = "647877b9-79d2-45f4-8c73-9384a7e5303e";
   const height = 400;
   const width = 600;
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <Chart filter={filter} chartId={chartId} height={height} width={width} />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        margin: "auto",
+        maxWidth: "70%",
+      }}
+    >
+      <div style={{ margin: "auto", textAlign: "center", marginTop: "30px" }}>
+        <h1
+          style={{
+            marginBottom: "10px",
+            fontSize: "20px",
+            color: "darkgreen",
+            fontWeight: "bold",
+          }}
+        >
+          Chart Name one
+        </h1>
+        <Chart
+          filter={filter}
+          chartId={chartId}
+          height={height}
+          width={width}
+        />
+      </div>
+      <div style={{ margin: "auto", textAlign: "center", marginTop: "30px" }}>
+        <h1
+          style={{
+            marginBottom: "10px",
+            fontSize: "20px",
+            color: "darkgreen",
+            fontWeight: "bold",
+          }}
+        >
+          Chart Name Two
+        </h1>
+        <Chart
+          filter={filter}
+          chartId={chartId}
+          height={height}
+          width={width}
+        />
+      </div>
+      <div style={{ margin: "auto", textAlign: "center", marginTop: "30px" }}>
+        <h1
+          style={{
+            marginBottom: "10px",
+            fontSize: "20px",
+            color: "darkgreen",
+            fontWeight: "bold",
+          }}
+        >
+          Chart Name Three
+        </h1>
+        <Chart
+          filter={filter}
+          chartId={chartId}
+          height={height}
+          width={width}
+        />
+      </div>
+      <div style={{ margin: "auto", textAlign: "center", marginTop: "30px" }}>
+        <h1
+          style={{
+            marginBottom: "10px",
+            fontSize: "20px",
+            color: "darkgreen",
+            fontWeight: "bold",
+          }}
+        >
+          Chart Name Four
+        </h1>
+        <Chart
+          filter={filter}
+          chartId={chartId}
+          height={height}
+          width={width}
+        />
+      </div>
     </div>
   );
 };

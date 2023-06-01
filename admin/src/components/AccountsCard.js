@@ -1,8 +1,10 @@
 import axios from "axios";
 import React from "react";
 import url from "../utils/url";
+import { useNavigate } from "react-router-dom";
 
 const AccountsCard = (props) => {
+  const navigate = useNavigate();
   const item = props.item;
   const type = props.type;
   const deleteButtonHandler = async () => {
@@ -13,6 +15,8 @@ const AccountsCard = (props) => {
     } catch (err) {
       console.log(err);
     }
+    navigate(0);
+    // window.location.reload(false)
   };
   return (
     <tr>

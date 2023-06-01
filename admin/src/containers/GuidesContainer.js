@@ -3,7 +3,7 @@ import ContentsCards from "../components/ContentsCards";
 
 const GuidesContainer = () => {
   return (
-    <div>
+    <div style={{ margin: "auto", marginTop: "50px" }}>
       <ContentsCards type="guide" />
     </div>
   );

@@ -3,17 +3,12 @@ import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
 
 const Chart = ({ filter, chartId, height, width }) => {
   const sdk = new ChartsEmbedSDK({
-    baseUrl: "https://charts.mongodb.com/charts-open-data-covid-19-zddgb",
+    baseUrl: "https://charts.mongodb.com/charts-new-uhtfm",
   });
   const chartDiv = useRef(null);
   const [rendered, setRendered] = useState(false);
   const [chart] = useState(
-    sdk.createChart({
-      chartId: chartId,
-      height: height,
-      width: width,
-      theme: "dark",
-    })
+    sdk.createChart({ chartId, height, width, theme: "dark" })
   );
 
   useEffect(() => {
@@ -33,5 +28,4 @@ const Chart = ({ filter, chartId, height, width }) => {
 
   return <div className="chart" ref={chartDiv} />;
 };
-
-export default Chart;
+export default Chart

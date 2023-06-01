@@ -21,15 +21,32 @@ const AccountsCards = (props) => {
   return (
     <div>
       <table>
-      <tr>
-        <td><div style={{ margin: "10px 10px 0", fontSize: "15px" }}>id</div></td>
-        <td><div style={{ margin: "10px 10px 0", fontSize: "15px" }}>name</div></td>
-        <td><div style={{ margin: "10px 10px 0", fontSize: "15px" }}>email</div></td>
-        <td><div style={{ margin: "10px 10px 0", fontSize: "15px" }}>delete</div></td>
-      </tr>
-      {accounts.map((item) => {
-        return <AccountsCard item={item} type={type}/>;
-      })}
+        <tr>
+          <td>
+            <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>id</div>
+          </td>
+          <td>
+            <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>name</div>
+          </td>
+          <td>
+            <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>email</div>
+          </td>
+          {type == "admin" ? (
+            <td>
+              <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
+                Created By
+              </div>
+            </td>
+          ) : null}
+          <td>
+            <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
+              delete
+            </div>
+          </td>
+        </tr>
+        {accounts.map((item) => {
+          return <AccountsCard item={item} type={type} />;
+        })}
       </table>
     </div>
   );
