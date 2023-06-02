@@ -3,7 +3,7 @@ import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
 
 const Chart = ({ filter, chartId, height, width }) => {
   const sdk = new ChartsEmbedSDK({
-    baseUrl: "https://charts.mongodb.com/charts-new-uhtfm",
+    baseUrl: "https://charts.mongodb.com/charts-monuments-gbxbd",
   });
   const chartDiv = useRef(null);
   const [rendered, setRendered] = useState(false);

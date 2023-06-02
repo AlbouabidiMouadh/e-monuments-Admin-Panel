@@ -30,7 +30,7 @@ const DashBoardContainer = () => {
         </h1>
         <Chart
           filter={filter}
-          chartId={chartId}
+          chartId={"6479ca5e-8dfe-43df-82dd-fe59d0404122"}
           height={height}
           width={width}
         />
