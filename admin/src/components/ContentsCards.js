@@ -6,7 +6,7 @@ const ContentsCards = (props) => {
   const type = props.type;
   const [Data, setData] = useState([]);
   const fetchData = async () => {
-    const response = await axios.get(`${url}/all-${type}s`);
+    const response = await axios.get(`${url}/all-${type}`);
     try {
       const data = response.data;
       setData(data);
@@ -33,9 +33,23 @@ const ContentsCards = (props) => {
               createdBy
             </div>
           </td>
+          {type != "guide" ? (
+            <td>
+              <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
+                approved
+              </div>
+            </td>
+          ) : (
+            <td>
+              <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
+                description
+              </div>
+            </td>
+          )}
+
           <td>
             <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
-              approved
+              delete
             </div>
           </td>
           {type != "guide" ? (
@@ -45,11 +59,6 @@ const ContentsCards = (props) => {
               </div>
             </td>
           ) : null}
-          <td>
-            <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
-              delete
-            </div>
-          </td>
         </tr>
         {Data.map((item) => {
           return <ContentsCard item={item} type={type} />;

@@ -24,7 +24,7 @@ const Nav = () => {
       <aside className="flex flex-col min-h-screen min-w-96 px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
         <a href="/">
           <div style={{ color: "white", fontSize: "20px" }}>
-            {JSON.parse(sessionStorage.getItem("adminInfo")).adminname}
+            {/* {JSON.parse(sessionStorage.getItem("adminInfo")).adminname} */}
           </div>
           {/* put here the picture or the name of the admin */}
         </a>

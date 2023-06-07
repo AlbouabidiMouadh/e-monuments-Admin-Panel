@@ -3,7 +3,7 @@ import axios from "axios";
 import url from "../utils/url";
 import { useNavigate } from "react-router-dom";
 const ContentsCard = (props) => {
-  const navigate = useNavigate
+  const navigate = useNavigate;
   const [clicked, setClicked] = useState(false);
   useEffect(() => {}, [clicked]);
   const item = props.item;
@@ -27,7 +27,7 @@ const ContentsCard = (props) => {
     try {
       console.log(response.data);
       // alert("item deleted succefully");
-      alert("item deleted succefully");
+      alert("item accepted succefully");
       navigate(0);
     } catch (err) {
       console.log(err);
@@ -53,13 +53,35 @@ const ContentsCard = (props) => {
       </td>
       <td>
         <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
-          {item.createdBy}
+          {item.createdByName || item.createdBy }
         </div>
       </td>
-      <td>
-        <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
-          {item.approved ? "true" : "false"}
+      {type !== "guide" ? (
+        <td>
+          <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
+            {item.approved ? "true" : "false"}
+          </div>
+        </td>
+      ) : (
+        <div>
+          <td>
+            <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
+              {String(item.description).substring(0, 50)}...
+            </div>
+          </td>
         </div>
+      )}
+      
+      <td>
+        <button
+          onClick={() => {
+            deleteButtonHandler();
+            setClicked(true);
+          }}
+          style={{ margin: "10px 10px 0", fontSize: "15px" }}
+        >
+          delete
+        </button>
       </td>
       {type !== "guide" ? (
         <td>
@@ -74,17 +96,6 @@ const ContentsCard = (props) => {
           </button>
         </td>
       ) : null}
-      <td>
-        <button
-          onClick={() => {
-            deleteButtonHandler();
-            setClicked(true);
-          }}
-          style={{ margin: "10px 10px 0", fontSize: "15px" }}
-        >
-          delete
-        </button>
-      </td>
     </tr>
     // </div>
   );
