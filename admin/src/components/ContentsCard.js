@@ -27,7 +27,7 @@ const ContentsCard = (props) => {
     try {
       console.log(response.data);
       // alert("item deleted succefully");
-      alert("item deleted succefully");
+      alert("item accepted succefully");
       navigate(0);
     } catch (err) {
       console.log(err);
