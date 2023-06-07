@@ -25,8 +25,8 @@ const App = () => {
     <div>
       <Routes>
         <Route index path="/" element={<HomeNav />} />
-        {token != null ? <Route path="/dashboard" element={<Dashboard />} /> : null}
-        {/* <Route path="/dashboard" element={<dashboard />} /> */}
+        {/* {token != null ? <Route path="/Dashboard" element={<Dashboard />} /> : null} */}
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recover-password" element={<ForgetPassword />} />
       </Routes>
