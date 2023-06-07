@@ -30,7 +30,7 @@ const DashBoardContainer = () => {
         </h1>
         <Chart
           filter={filter}
-          chartId={chartId}
+          chartId={"6479ca5e-8dfe-43df-82dd-fe59d0404122"}
           height={height}
           width={width}
         />
@@ -44,11 +44,11 @@ const DashBoardContainer = () => {
             fontWeight: "bold",
           }}
         >
-          Chart Name Two
+         SponsorShips 
         </h1>
         <Chart
           filter={filter}
-          chartId={chartId}
+          chartId={"647c7b12-b1b7-4e2e-852c-8619fa9d7415"}
           height={height}
           width={width}
         />
@@ -66,7 +66,7 @@ const DashBoardContainer = () => {
         </h1>
         <Chart
           filter={filter}
-          chartId={chartId}
+          chartId={"6479cf7b-186d-4217-8b4e-e1cdb28cdece"}
           height={height}
           width={width}
         />
@@ -84,7 +84,7 @@ const DashBoardContainer = () => {
         </h1>
         <Chart
           filter={filter}
-          chartId={chartId}
+          chartId={"6479d33e-123e-4671-8882-37b308f9220e"}
           height={height}
           width={width}
         />
