@@ -51,7 +51,7 @@ const ContentsCards = (props) => {
       }
 
       try {
-        const response = await axios.put(`${url}/modify-guide`, {
+        const response = await axios.put(`${url}/modify-guide/${}`, {
           title: title,
           description: description,
           image: pictureName,
