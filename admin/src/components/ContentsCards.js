@@ -266,7 +266,8 @@ const ContentsCards = (props) => {
               {type !== "guide" ? (
                 <td>
                   <div style={{ margin: "10px 10px 0", fontSize: "15px" }}>
-                    {item.approved ? "true" : "false"}
+                    {/* {item.approved ? "true" : "false"} */}
+                    approved
                   </div>
                 </td>
               ) : (
