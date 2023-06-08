@@ -32,10 +32,10 @@ const ContentsCards = (props) => {
     const handleSubmit = async (event) => {
       event.preventDefault();
 
+      const pictureName = `${uuidv4()}.jpg`;
       try {
         const formData = new FormData();
         // const file = event.target.files[0];
-        const pictureName = `${uuidv4()}.jpg`;
         formData.append("profile", file, pictureName);
 
         const response = await axios.put(`${url}/upload-picture`, formData, {
@@ -51,7 +51,7 @@ const ContentsCards = (props) => {
       }
 
       try {
-        const response = await axios.put(`${url}/modify-guide/${}`, {
+        const response = await axios.put(`${url}/modify-guide/${item._id}`, {
           title: title,
           description: description,
           image: pictureName,
@@ -80,7 +80,7 @@ const ContentsCards = (props) => {
                 type="text"
                 id="titre"
                 name="titre"
-                value={post.titre}
+                value={title}
                 onChange={handleInputChange}
                 className="border rounded px-3 py-2 w-full"
               />
@@ -95,7 +95,7 @@ const ContentsCards = (props) => {
               <textarea
                 id="description"
                 name="description"
-                value={post.description}
+                value={description}
                 onChange={handleInputChange}
                 className="border rounded px-3 py-2 w-full"
               />
