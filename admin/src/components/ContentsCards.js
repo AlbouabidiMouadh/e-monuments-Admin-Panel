@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 const ContentsCards = (props) => {
-  const PopupWindow = ({ onClose }) => {
+  const item = props.item;
+  const [guideID, setGuideId] = useState();
+  const PopupWindow = ({ onClose, id }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [file, setFile] = useState(null);
@@ -31,7 +33,7 @@ const ContentsCards = (props) => {
 
     const handleSubmit = async (event) => {
       event.preventDefault();
-
+      // console.log(item)
       const pictureName = `${uuidv4()}.jpg`;
       try {
         const formData = new FormData();
@@ -51,7 +53,8 @@ const ContentsCards = (props) => {
       }
 
       try {
-        const response = await axios.put(`${url}/modify-guide/${item._id}`, {
+
+        const response = await axios.put(`${url}/modify-guide/${id}`, {
           title: title,
           description: description,
           image: pictureName,
@@ -135,8 +138,6 @@ const ContentsCards = (props) => {
       </div>
     );
   };
-  const [clicked, setClicked] = useState(false);
-  const item = props.item;
 
   const modifyButtonHandler = async () => {
     setShowPopup(true);
@@ -145,7 +146,7 @@ const ContentsCards = (props) => {
   const deleteButtonHandler = async () => {
     console.log("delete button pressed");
     try {
-      const response = await axios.delete(`${url}/${type}/${item._id}`);
+      const response = await axios.delete(`${url}/${type}/${guideID}`);
       console.log(response.data);
       alert("item deleted successfully");
       navigate(0);
@@ -157,7 +158,7 @@ const ContentsCards = (props) => {
   const acceptButtonHandler = async () => {
     console.log("accept button pressed");
     try {
-      const response = await axios.put(`${url}/${type}/${item._id}`, {
+      const response = await axios.put(`${url}/${type}/${guideID}`, {
         approved: true,
       });
       console.log(response.data);
@@ -190,14 +191,14 @@ const ContentsCards = (props) => {
   const handleOpenPopup = () => {
     setShowPopup(true);
   };
-
+  
   const handleClosePopup = () => {
     setShowPopup(false);
   };
-
+  
   return (
     <div>
-      {showPopup && <PopupWindow onClose={handleClosePopup} />}
+      {showPopup && <PopupWindow onClose={handleClosePopup} id={guideID} />}
       <table>
         <tr>
           <td>
@@ -281,20 +282,20 @@ const ContentsCards = (props) => {
               <td>
                 <button
                   onClick={() => {
+                    setGuideId(String(item._id));
                     deleteButtonHandler();
-                    setClicked(true);
                   }}
                   style={{ margin: "10px 10px 0", fontSize: "15px" }}
-                >
+                  >
                   delete
                 </button>
               </td>
               {type !== "guide" ? (
                 <td>
                   <button
-                    onClick={async () => {
-                      await acceptButtonHandler();
-                      setClicked(true);
+                    onClick={() => {
+                      setGuideId(String(item._id));
+                      acceptButtonHandler();
                     }}
                     style={{ margin: "10px 10px 0", fontSize: "15px" }}
                   >
@@ -305,6 +306,7 @@ const ContentsCards = (props) => {
                 <td>
                   <button
                     onClick={async () => {
+                      setGuideId(String(item._id));
                       await modifyButtonHandler();
                     }}
                     style={{ margin: "10px 10px 0", fontSize: "15px" }}
